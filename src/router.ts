@@ -29,7 +29,15 @@ export const router = createRouter({
     },
     {
       path: "/posts/:id/edit",
-      component: EditPost
+      component: EditPost,
+      beforeEnter:()=>{
+        const usersStore = useUsers()
+        if (! usersStore.currentUserId){
+          return {
+            path:"/"
+          }
+        }
+      }
     },
   ]
 })

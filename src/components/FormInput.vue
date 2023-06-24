@@ -1,5 +1,7 @@
 <script lang="ts" setup>
 import { Status } from '../validation';
+import { useModal } from '../composables/modal'
+import { ref, watchEffect } from 'vue';
 
 defineProps<{
   name: string
@@ -16,6 +18,15 @@ function handleInput (e: Event) {
   const value = (e.target as HTMLInputElement).value
   emit('update:modelValue', value)
 }
+
+const modal = useModal()
+
+const setSignIn = ref(false)
+
+watchEffect(()=>{
+  setSignIn.value = modal.isSignIn.value
+})
+
 </script>
 
 <template>
@@ -31,8 +42,15 @@ function handleInput (e: Event) {
       :type="type"
     />
     </div>
-    <p class="is-danger help" v-if="!status.valid">
-      {{ status.message }}
-    </p>
+    <div v-if="setSignIn">
+      <p class="is-danger help" v-if="!status.valid && modelValue">
+        {{ status.message }}
+      </p>
+    </div>
+    <div v-else>
+      <p class="is-danger help" v-if="!status.valid">
+        {{ status.message }}
+      </p>
+    </div>
   </div>
 </template>

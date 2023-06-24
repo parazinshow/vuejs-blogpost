@@ -10,8 +10,6 @@ const router = useRouter()
 const postsStore = usePosts()
 const usersStore = useUsers()
 
-console.log(usersStore.currentUserId)
-
 if(!usersStore.currentUserId){
     throw Error('User was not found!')
   }

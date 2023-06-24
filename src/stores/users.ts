@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import { NewUser } from '../users'
-import { ref } from 'vue'
 
 interface UserState{
   currentUserId?: string

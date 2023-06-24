@@ -23,8 +23,6 @@ const canEdit = computed(()=> {
     return false
   }
   return true
-  console.log(usersStore.currentUserId)
-  console.log(post.authorId)
 })
 
 </script>

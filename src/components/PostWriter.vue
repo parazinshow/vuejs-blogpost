@@ -32,13 +32,6 @@ onMounted(()=>{
   contentEditable.value.innerText = content.value
 })
 
-// mesmo que o de baixo .-. com menor numero de linhas
-// watchEffect(()=>{
-//   marked.parse(content.value, (err,parseResults) =>{
-//     html.value = parseResults
-//   })
-// })
-
 function parseHtml (markdown: string) {
   marked.parse(markdown, {
     gfm:true,
@@ -50,6 +43,13 @@ function parseHtml (markdown: string) {
     html.value = parseResults
   })
 }
+
+// mesmo que o de baixo .-. com menor numero de linhas
+// watchEffect(()=>{
+//   marked.parse(content.value, (err,parseResults) =>{
+//     html.value = parseResults
+//   })
+// })
 
 watch(content, debounce((newContent) =>{
   parseHtml(newContent)
